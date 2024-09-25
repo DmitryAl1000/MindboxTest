@@ -12,21 +12,60 @@ namespace Figures.Tests
     public class TriangleTests
     {
         [TestMethod()]
-        public void GetSquareTest()
+        public void GetSquare_UseABC345_GetS_6()
         {
             //arrange
-            double x = 3;
-            double y = 4;
-            double z = 5;
+            double a = 3;
+            double b = 4;
+            double c = 5;
 
             double expectedSquare = 6;
             //act
-            Triangle triangle = new Triangle();
-            var squere = triangle.GetSquare(x, y, z);
-
+            Triangle triangle = new Triangle(a, b, c);
+            var squere = triangle.CalcArea();
 
             //assert
             Assert.AreEqual(expectedSquare, squere);
         }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void GetSquare_UseNegativeNums_GetExeption()
+        {
+            //arrange
+            double a = - 3;
+            double b = - 4;
+            double c = - 5;
+
+            //act
+            Triangle triangle = new Triangle(a, b, c);
+            var squere = triangle.CalcArea();
+
+            //assert
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+        public void GetSquare_UseZero_GetExeption()
+        {
+            //arrange
+            double a = 3;
+            double b = 4;
+            double c = 0;
+
+            //act
+            Triangle triangle = new Triangle(a, b, c);
+            var squere = triangle.CalcArea();
+
+            //assert
+            Assert.Fail();
+        }
+
+
+
+
+
+
     }
 }

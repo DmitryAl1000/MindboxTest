@@ -1,34 +1,51 @@
-﻿namespace Figures
-{
-    public class Triangle : IGeometricalFigure
-    {
-        public double GetSquare(params double[] numbers)
-        {
-            if (!IsItTriangle(numbers))
-            {
-                // logger.log не треугольник
-                return 0;
-            }
+﻿
 
-            double halfPerimetr = numbers.Sum() / 2;
+namespace Figures
+{
+    public class Triangle : GeometricalFigure, ICalcArea
+    {
+        public string FigureName { get; } = "Треугольник";
+
+        private double _sideA;
+        private double _sideB;
+        private double _sideC;  
+
+
+
+        public Triangle(double sideA, double sideB, double sideC)
+        {
+            this._sideA = sideA;
+            this._sideB = sideB;
+            this._sideC = sideC;
+        }
+
+        public double CalcArea()
+        {
+            CheckNegativeValues(_sideA, _sideB, _sideC);
 
             //площать по трем сторонам формула Герона
+            double halfPerimetr = (_sideA + _sideB + _sideC) / 2;
             return Math.Sqrt(
                 halfPerimetr *
-                (halfPerimetr - numbers[0]) *
-                (halfPerimetr - numbers[1]) *
-                (halfPerimetr - numbers[3]));
+                (halfPerimetr - _sideA) *
+                (halfPerimetr - _sideB) *
+                (halfPerimetr - _sideC));
         }
 
-        private bool IsItTriangle(double[] numbers) 
+        public bool IsItRightTriangle()
         {
-            if (numbers.Length == 3)
+            if (_sideA == _sideB ||
+                _sideA == _sideC ||
+                _sideB == _sideC
+                )
                 return true;
             else
-                return false;
+                return false;   
         }
 
-
-
+        public string MessegeCalcArea()
+        {
+            return $"{FigureName} имеет площадь: {CalcArea()}";
+        }
     }
 }

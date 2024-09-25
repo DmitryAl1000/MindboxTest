@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Figures
 {
-    public interface IGeometricalFigure
+    public interface ICalcArea
     {
-        public double GetSquare(params double[] numbers);
+        public double CalcArea();
+
+        public string FigureName { get; }
+        public string MessegeCalcArea();
+
     }
 }

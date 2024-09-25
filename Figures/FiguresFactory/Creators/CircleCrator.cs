@@ -1,15 +1,19 @@
 ﻿namespace Figures
 {
-    public class CircleCrator : FigureCreator
+    public class CircleCrator : IFigureCreator
     {
-        public override ICalcArea Create()
+        public ICalcArea CreateFromConsoleReadLine()
         {
             Console.WriteLine($"Введите радиус круга");
-            double r = ParseDoubleFromConsole();
+            double r = Parser.ParseDoubleFromConsole();
 
             return new Сircle(r);
         }
+
     }
+
+
+
 
 
 

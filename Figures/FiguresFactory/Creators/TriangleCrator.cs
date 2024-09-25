@@ -1,15 +1,15 @@
 ﻿namespace Figures
 {
-    public class TriangleCrator : FigureCreator
+    public class TriangleCrator : IFigureCreator
     {
-        public override ICalcArea Create()
+        public ICalcArea CreateFromConsoleReadLine()
         {
             Console.WriteLine($"Введите первую сторону треугольника");
-            double a = ParseDoubleFromConsole();
+            double a = Parser.ParseDoubleFromConsole();
             Console.WriteLine($"Введите вторую сторону треугольника");
-            double b = ParseDoubleFromConsole();
+            double b = Parser.ParseDoubleFromConsole();
             Console.WriteLine($"Введите третью сторону треугольника");
-            double с = ParseDoubleFromConsole();
+            double с = Parser.ParseDoubleFromConsole();
 
             return new Triangle(a, b, с);
         }

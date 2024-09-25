@@ -1,12 +1,11 @@
 ﻿namespace Figures
 {
-    public class SquereCrator : FigureCreator
+    public class SquereCrator : IFigureCreator
     {
-        public override ICalcArea Create()
+        public ICalcArea CreateFromConsoleReadLine()
         {
             Console.WriteLine($"Введите сторону квадрата");
-            double r = ParseDoubleFromConsole();
-
+            double r = Parser.ParseDoubleFromConsole();
             return new Squere(r);
         }
     }

@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Figures
 {
     public class FigureFactory
     {
         List<string> _figuresNames = new List<string>();
-        int _menuIndicator;
+
+        public int MenuIndicator { get; set; }
+
 
         public FigureFactory()
         {
@@ -18,46 +21,35 @@ namespace Figures
             _figuresNames.Add("Круг");
             _figuresNames.Add("Квадрат");
         }
-
+  
         public ICalcArea Create()
         {
-            switch (_menuIndicator)
+            switch (MenuIndicator)
             {
                 case 1:
                     var triangleCrator = new TriangleCrator();
-                    return triangleCrator.Create();
+                    return triangleCrator.CreateFromConsoleReadLine();
                 case 2:
                     var circleCrator = new CircleCrator();
-                    return circleCrator.Create();
+                    return circleCrator.CreateFromConsoleReadLine();
                 case 3:
                     var SquereCrator = new SquereCrator();
-                    return SquereCrator.Create();
+                    return SquereCrator.CreateFromConsoleReadLine();
 
                 default:
-                    throw new Exception("Выбран несуществующий пункт меню");
+                    throw new Exception("Пункт меню не выбран или выбран несуществующий пункт меню");
             }
         }
-
-        private int ParseIntFromConsole()
+        public void ChooceFigureFromMenu()
         {
-            int result = 0;
-            bool repete = true;
-            do
-            {
-                if (int.TryParse(Console.ReadLine(), out result))
-                    repete = false;
-                else
-                    Console.WriteLine($"Не понимаю что тут написано, попробуйте снова");
-            } while (repete);
-
-
-            return result;
+            ShowMenu();
+            MenuIndicator = ChooseMenuIndicator();
         }
         private int ChooseMenuIndicator()
         {
             do
             {
-                int result = ParseIntFromConsole();
+                int result = Parser.ParseIntFromConsole();
                 if (result > 0 && result <= _figuresNames.Count)
                 {
                     return result;
@@ -74,11 +66,7 @@ namespace Figures
                 Console.WriteLine($"{i + 1}.{_figuresNames[i]}");
             }
         }
-        public void ChooceFigureFromMenu()
-        {
-            ShowMenu();
-            _menuIndicator = ChooseMenuIndicator();
-        }
+        
     }
 
 

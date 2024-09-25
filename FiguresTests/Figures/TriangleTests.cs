@@ -12,16 +12,16 @@ namespace Figures.Tests
     public class TriangleTests
     {
         [TestMethod()]
-        public void GetSquare_UseABC345_GetS_6()
+        public void CalcArea_UseABC345_GetS_6()
         {
             //arrange
-            double a = 3;
-            double b = 4;
-            double c = 5;
+            double sideA = 3;
+            double sideB = 4;
+            double sideC = 5;
 
             double expectedSquare = 6;
             //act
-            Triangle triangle = new Triangle(a, b, c);
+            Triangle triangle = new Triangle(sideA, sideB, sideC);
             var squere = triangle.CalcArea();
 
             //assert
@@ -30,15 +30,15 @@ namespace Figures.Tests
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
-        public void GetSquare_UseNegativeNums_GetExeption()
+        public void CalcArea_UseNegativeNums_GetExeption()
         {
             //arrange
-            double a = - 3;
-            double b = - 4;
-            double c = - 5;
+            double sideA = - 3;
+            double sideB = - 4;
+            double sideC = - 5;
 
             //act
-            Triangle triangle = new Triangle(a, b, c);
+            Triangle triangle = new Triangle(sideA, sideB, sideC);
             var squere = triangle.CalcArea();
 
             //assert
@@ -47,15 +47,15 @@ namespace Figures.Tests
 
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException))]
-        public void GetSquare_UseZero_GetExeption()
+        public void CalcArea_UseZero_GetExeption()
         {
             //arrange
-            double a = 3;
-            double b = 4;
-            double c = 0;
+            double sideA = 3;
+            double sideB = 4;
+            double sideC = 0;
 
             //act
-            Triangle triangle = new Triangle(a, b, c);
+            Triangle triangle = new Triangle(sideA, sideB, sideC);
             var squere = triangle.CalcArea();
 
             //assert

@@ -9,9 +9,7 @@ namespace Figures
     public interface ICalcArea
     {
         public double CalcArea();
-
-        public string FigureName { get; }
         public string MessegeCalcArea();
-
+        public string FigureName { get; }
     }
 }

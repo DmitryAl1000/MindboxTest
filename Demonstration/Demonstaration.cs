@@ -17,6 +17,7 @@ Console.WriteLine(circle.MessegeCalcArea() + measure);
 Console.WriteLine();
 
 
+
 Console.WriteLine($"==== Вычисление площади фигуры без знания типа фигуры =====");
 
 var services = new ServiceCollection().AddTransient<IFigureCreator, CircleCrator >(); //пусть будет круг

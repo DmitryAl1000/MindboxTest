@@ -12,12 +12,14 @@
 В базе данных MS SQL Server есть продукты и категории. Одному продукту может соответствовать много категорий, в одной категории может быть много продуктов. Напишите SQL запрос для выбора всех пар «Имя продукта – Имя категории». Если у продукта нет категорий, то его имя все равно должно выводиться.
 
 
-SELECT ProductName, CategoryName 
-FROM 
-(select Products.ProductName, Categorys.CategoryName from Products
-left JOIN Categorys on Products.CategoryId = Categorys.Id
-) as Products_Whith_Categorys
-UNION SELECT ProductName, CategoryName FROM 
-(select Products.ProductName, Categorys.CategoryName from Products
-JOIN Categorys on Products.Id = Categorys.ProductId
-) as Categorys_Whith_Products
+SELECT ProductName, CategoryName  <br>
+FROM <br>
+(select Products.ProductName, Categorys.CategoryName from Products <br>
+left JOIN Categorys on Products.CategoryId = Categorys.Id <br>
+) as Products_Whith_Categorys <br>
+
+UNION SELECT ProductName, CategoryName FROM <br>
+
+(select Products.ProductName, Categorys.CategoryName from Products <br>
+JOIN Categorys on Products.Id = Categorys.ProductId <br>
+) as Categorys_Whith_Products <br>
